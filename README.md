@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# € to meters
 
-## Getting Started
+> In a talk I heard that, obviously, euros would not convert to meters. Well, actually! 🤓
 
-First, run the development server:
+A retro Windows 98 styled web application that converts euros to meters based on the physical dimensions of euro banknotes and coins.
+
+![Screenshot](./screenshot.png)
+
+## Features
+
+- **Windows 98 UI**: Authentic retro styling with classic beveled borders, system colors, and MS Sans Serif font
+- **Bidirectional Conversion**: Convert from euros to meters or meters to euros
+- **Smart Denomination Breakdown**: Uses a greedy algorithm to intelligently break down amounts into optimal combinations of banknotes and coins
+- **Real Physical Dimensions**: Calculations based on actual euro currency sizes:
+  - Banknotes: €5 (120mm) to €500 (160mm)
+  - Coins: €0.01 (16.25mm) to €2 (25.75mm)
+
+## How It Works
+
+### Euro to Meters
+
+Enter an amount in euros and the app calculates the total distance if you lined up the physical currency side by side. For example:
+
+- €106 = 1×€100 note (147mm) + 1×€5 note (120mm) + 1×€1 coin (23.25mm) = **0.29 meters**
+
+### Meters to Euros
+
+Enter a distance in meters and the app calculates how much money you'd need to cover that distance with physical currency.
+
+### Installation
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Run tests
+npm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to view the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+├── app/
+│   ├── page.tsx          # Main page component
+│   ├── layout.tsx        # Root layout with metadata
+│   └── icon.svg          # Favicon
+├── components/
+│   ├── button.component.tsx
+│   ├── input.component.tsx
+│   └── win98-window.component.tsx
+├── logic/
+│   ├── euro-to-meters.function.ts
+│   ├── euro-to-meters.test.ts
+│   ├── meters-to-euro.function.ts
+│   ├── meters-to-euro.test.ts
+│   └── sizes.ts          # Euro denomination dimensions
+└── jest.config.js
+```
 
-## Learn More
+## License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
